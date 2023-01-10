@@ -1,0 +1,14 @@
+{
+    "login":"Entrar",
+    "email":"E-mail",
+    "password":"Senha",
+    "insertYourCredentialsToLogin":"Insira suas credenciais para entrar",
+    "yourDeliveryMadeSimple":"Seu delivery, mais fácil.",
+    "wrongCredentials":"Credenciais erradas",
+    "wrongCredentialsDescription":"As credenciais passadas estão Erradas, por favor confirme",
+    "tooManyrquestsDescription":"Muitas tentativas, por favor, tente novamente mais tarde",
+    "tooManyRequests":"Muitas tentativas",
+    "unknownError":"Erro desconhecido",
+    "unknownErrorDescription":"Erro desconhecido, caso este erro persistir, por favor, entre em contato",
+    "loading":"Carregando..."
+}
