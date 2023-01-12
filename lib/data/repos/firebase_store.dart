@@ -32,7 +32,7 @@ class FetchFromStorage extends Storage {
   }
 
   Future<List<StoreCouriers>> getAllCouriers() async {
-    final ref = storage.doc(user!.email).collection('couriers');
+    final ref = storage.doc(storeCreatedUid).collection('couriers');
     QuerySnapshot querySnapshot = await ref.get();
     final List data = querySnapshot.docs.map((doc) => doc.data()).toList();
     return data.map((data) => StoreCouriers.fromMap(data)).toList();
@@ -40,7 +40,7 @@ class FetchFromStorage extends Storage {
 
   Future<List<AddressesModel>> getAdressesByCourier(courierId) async {
     final ref = storage
-        .doc(user!.email)
+        .doc(storeCreatedUid)
         .collection('couriers')
         .doc(courierId)
         .collection('addresses');
@@ -53,7 +53,7 @@ class FetchFromStorage extends Storage {
 class AddToStorage extends Storage {
   addCourierToStorage(courierName) async {
     await storage
-        .doc(user!.email)
+        .doc(storeCreatedUid)
         .collection('couriers')
         .doc(courierCreatedUid)
         .set({
@@ -65,7 +65,7 @@ class AddToStorage extends Storage {
   addAdressToCourier(
       courierId, clientName, Map<String, dynamic> dataToAdd) async {
     await storage
-        .doc(user!.email)
+        .doc(storeCreatedUid)
         .collection('couriers')
         .doc(courierId)
         .collection('addresses')
@@ -77,7 +77,7 @@ class AddToStorage extends Storage {
 class RemoveFromStorage extends Storage {
   removeCourierFromStorage(courierId) async {
     await storage
-        .doc(user!.email)
+        .doc(storeCreatedUid)
         .collection('couriers')
         .doc(courierId)
         .delete();
