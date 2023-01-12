@@ -16,7 +16,7 @@ abstract class Storage {
 
 class FetchFromStorage extends Storage {
   fetchStoreIdFromStorage() async {
-    final ref = storage.doc(user!.email).withConverter(
+    final ref = storage.doc(storeCreatedUid).withConverter(
         fromFirestore: StoreIdModel.fromFirestore,
         toFirestore: (StoreIdModel storeId, _) => StoreIdModel().toFirestore());
     final docSnap = await ref.get();
@@ -24,8 +24,10 @@ class FetchFromStorage extends Storage {
     if (storeId != null) {
       storeIdModelString = storeId.storeId;
     } else {
-      storage.doc(user!.email).set({'storeId': storeCreatedUid}).whenComplete(
-          () => fetchStoreIdFromStorage());
+      storage.doc(storeCreatedUid).set({
+        'storeId': storeCreatedUid,
+        'storeEmail': user!.email
+      }).whenComplete(() => fetchStoreIdFromStorage());
     }
   }
 
