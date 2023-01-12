@@ -1,11 +1,10 @@
-import 'package:entreggue_restaurant/application/bloc/bloc/app_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class ErrorDialog {
-  ErrorDialog({required this.context});
+class AddAddressErrorDialog {
+  AddAddressErrorDialog({required this.context});
   BuildContext context;
-  showErrorDialog() {
+  showAddressErrorDialog() {
     showDialog(
       barrierDismissible: true,
       context: context,
@@ -20,7 +19,7 @@ class ErrorDialog {
             child: Column(
               children: [
                 Text(
-                  authError!,
+                  AppLocalizations.of(context)!.emptyInputs,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 18,
@@ -30,7 +29,7 @@ class ErrorDialog {
                 ),
                 const Spacer(),
                 Text(
-                  authErrorDescription!,
+                  AppLocalizations.of(context)!.emptyInputsDescriptions,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),

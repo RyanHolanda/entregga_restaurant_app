@@ -1,7 +1,6 @@
-import 'package:entreggue_restaurant/application/bloc/bloc/auth_bloc.dart';
+import 'package:entreggue_restaurant/application/bloc/bloc/app_bloc.dart';
 import 'package:entreggue_restaurant/application/presentation/widgets/buttons/button_1.dart';
-import 'package:entreggue_restaurant/application/presentation/widgets/dialogs/loading_dialog.dart';
-import 'package:entreggue_restaurant/application/presentation/widgets/inputs/input_field.dart';
+import 'package:entreggue_restaurant/application/presentation/widgets/inputs/input_credentials_field.dart';
 import 'package:entreggue_restaurant/domain/text_controllers/text_controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +11,7 @@ class WebLoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthBloc, AuthState>(
+    return BlocBuilder<AppBloc, AppState>(
       builder: (context, state) {
         return Scaffold(
           body: SelectionArea(
@@ -65,7 +64,7 @@ class WebLoginScreen extends StatelessWidget {
                         const Spacer(),
                         Text(
                           AppLocalizations.of(context)!.login,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 40, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
@@ -85,6 +84,7 @@ class WebLoginScreen extends StatelessWidget {
                           height: 50,
                         ),
                         InputField(
+                          onSubmited: null,
                           controller: TextControllers.emailController,
                           hintText: AppLocalizations.of(context)!.email,
                           isPassword: false,
@@ -93,6 +93,11 @@ class WebLoginScreen extends StatelessWidget {
                           height: 30,
                         ),
                         InputField(
+                          onSubmited: (value) => context.read<AppBloc>().add(
+                              AppEventLogin(
+                                  email: TextControllers.emailController.text,
+                                  password:
+                                      TextControllers.passwordController.text)),
                           controller: TextControllers.passwordController,
                           hintText: AppLocalizations.of(context)!.password,
                           isPassword: true,
@@ -100,15 +105,18 @@ class WebLoginScreen extends StatelessWidget {
                         const SizedBox(
                           height: 50,
                         ),
-                        MyButton1(
-                          onPressed: () {
-                            context.read<AuthBloc>().add(AuthEventLogin(
-                                email: TextControllers.emailController.text,
-                                password:
-                                    TextControllers.passwordController.text));
-                          },
-                          title: AppLocalizations.of(context)!.login,
-                        ),
+                        state.isLoading
+                            ? CircularProgressIndicator()
+                            : MyButton1(
+                                onPressed: () {
+                                  context.read<AppBloc>().add(AppEventLogin(
+                                      email:
+                                          TextControllers.emailController.text,
+                                      password: TextControllers
+                                          .passwordController.text));
+                                },
+                                title: AppLocalizations.of(context)!.login,
+                              ),
                         const Spacer(),
                         Text(
                           'Entregga',

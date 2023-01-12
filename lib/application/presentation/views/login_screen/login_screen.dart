@@ -1,10 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:entreggue_restaurant/application/bloc/bloc/auth_bloc.dart';
+import 'package:entreggue_restaurant/application/bloc/bloc/app_bloc.dart';
 import 'package:entreggue_restaurant/application/presentation/views/login_screen/mobile.dart';
 import 'package:entreggue_restaurant/application/presentation/views/login_screen/web.dart';
 import 'package:entreggue_restaurant/application/presentation/widgets/dialogs/error_dialog.dart';
-import 'package:entreggue_restaurant/application/presentation/widgets/dialogs/loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -14,19 +13,9 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
+    return BlocListener<AppBloc, AppState>(
       listener: (context, state) async {
-        state.isLoading
-            ? LoadingDialog(context: context).showLoadingDialog()
-            : state is AuthStateLoggedIn
-                ? Navigator.pop(context)
-                : null;
-        if (state is AuthStateError) {
-          Future back() async {
-            Navigator.pop(context);
-          }
-
-          await back();
+        if (state is AppStateError) {
           switch (authError) {
             case 'user-not-found':
               authError = AppLocalizations.of(context)!.wrongCredentials;

@@ -1,9 +1,11 @@
-import 'package:entreggue_restaurant/application/bloc/bloc/auth_bloc.dart';
+import 'package:entreggue_restaurant/application/bloc/bloc/app_bloc.dart';
 import 'package:entreggue_restaurant/application/presentation/views/couriers_screen/couriers_screen.dart';
+import 'package:entreggue_restaurant/application/presentation/views/send_order_screen/send_order_screen.dart';
+import 'package:entreggue_restaurant/application/presentation/widgets/dialogs/loading_dialog.dart';
+import 'package:entreggue_restaurant/domain/auth/auth.dart';
 import 'package:entreggue_restaurant/firebase_options.dart';
 import 'package:entreggue_restaurant/l10n/l10n.dart';
 import 'package:entreggue_restaurant/application/presentation/views/login_screen/login_screen.dart';
-import 'package:entreggue_restaurant/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return BlocProvider(
-      create: (context) => AuthBloc(),
+      create: (context) => AppBloc(),
       child: MaterialApp(
           localizationsDelegates: const [
             GlobalWidgetsLocalizations.delegate,
@@ -34,17 +36,34 @@ class MyApp extends StatelessWidget {
             AppLocalizations.delegate
           ],
           supportedLocales: L10n.all,
-          routes: Routes.list,
           debugShowCheckedModeBanner: false,
           theme: lightTheme(),
-          home: BlocBuilder<AuthBloc, AuthState>(
-            builder: (context, state) {
-              if (state is AuthStateLoggedIn) {
-                return const CouriersScreen();
-              } else {
-                return const LoginScreen();
+          home: BlocListener<AppBloc, AppState>(
+            listener: (context, state) {
+              if (state is AppStateLoggedIn && state.isLoading == true) {
+                LoadingDialog(context: context).showLoadingDialog();
+              } else if (state is AppStateLoggedIn &&
+                  state.isLoading == false) {
+                print('is not loading anymore');
+                Navigator.pop(context);
               }
             },
+            child: StreamBuilder(
+                stream: Auth().authStateChanges,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    context.read<AppBloc>().add(AppEventGetData());
+                  }
+                  return BlocBuilder<AppBloc, AppState>(
+                    builder: (context, state) {
+                      if (state is AppStateLoggedIn) {
+                        return const CouriersScreen();
+                      } else {
+                        return const LoginScreen();
+                      }
+                    },
+                  );
+                }),
           )),
     );
   }

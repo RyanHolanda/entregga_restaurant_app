@@ -5,11 +5,14 @@ class InputField extends StatefulWidget {
     required this.hintText,
     required this.isPassword,
     required this.controller,
+    required this.onSubmited,
     Key? key,
   }) : super(key: key);
 
   final String hintText;
   final bool isPassword;
+  final onSubmited;
+
   final TextEditingController controller;
 
   @override
@@ -24,6 +27,8 @@ class _InputFieldState extends State<InputField> {
     return SizedBox(
         width: 400,
         child: TextField(
+          onEditingComplete: () => FocusScope.of(context).nextFocus(),
+          onSubmitted: widget.onSubmited,
           controller: widget.controller,
           obscureText: widget.isPassword ? invisiblePassword : false,
           decoration: InputDecoration(

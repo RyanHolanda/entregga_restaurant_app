@@ -1,6 +1,6 @@
-import 'package:entreggue_restaurant/application/bloc/bloc/auth_bloc.dart';
+import 'package:entreggue_restaurant/application/bloc/bloc/app_bloc.dart';
 import 'package:entreggue_restaurant/application/presentation/widgets/buttons/button_1.dart';
-import 'package:entreggue_restaurant/application/presentation/widgets/inputs/input_field.dart';
+import 'package:entreggue_restaurant/application/presentation/widgets/inputs/input_credentials_field.dart';
 import 'package:entreggue_restaurant/domain/text_controllers/text_controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +11,7 @@ class MobileLoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthBloc, AuthState>(
+    return BlocBuilder<AppBloc, AppState>(
       builder: (context, state) {
         return Scaffold(
           body: Stack(
@@ -70,6 +70,7 @@ class MobileLoginScreen extends StatelessWidget {
                             height: 50,
                           ),
                           InputField(
+                              onSubmited: null,
                               controller: TextControllers.emailController,
                               hintText: AppLocalizations.of(context)!.email,
                               isPassword: false),
@@ -77,20 +78,31 @@ class MobileLoginScreen extends StatelessWidget {
                             height: 20,
                           ),
                           InputField(
+                              onSubmited: (value) => context
+                                  .read<AppBloc>()
+                                  .add(AppEventLogin(
+                                      email:
+                                          TextControllers.emailController.text,
+                                      password: TextControllers
+                                          .passwordController.text)),
                               controller: TextControllers.passwordController,
                               hintText: AppLocalizations.of(context)!.password,
                               isPassword: true),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 50),
-                            child: MyButton1(
-                              title: AppLocalizations.of(context)!.login,
-                              onPressed: () {
-                                context.read<AuthBloc>().add(AuthEventLogin(
-                                    email: TextControllers.emailController.text,
-                                    password: TextControllers
-                                        .passwordController.text));
-                              },
-                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 50),
+                            child: state.isLoading
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : MyButton1(
+                                    title: AppLocalizations.of(context)!.login,
+                                    onPressed: () {
+                                      context.read<AppBloc>().add(AppEventLogin(
+                                          email: TextControllers
+                                              .emailController.text,
+                                          password: TextControllers
+                                              .passwordController.text));
+                                    },
+                                  ),
                           )
                         ],
                       ),
