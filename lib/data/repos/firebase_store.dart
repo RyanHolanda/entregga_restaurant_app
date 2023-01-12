@@ -22,12 +22,12 @@ class FetchFromStorage extends Storage {
     final docSnap = await ref.get();
     final storeId = docSnap.data();
     if (storeId != null) {
-      storeIdModelString = storeId.storeId;
+      return storeIdModelString = storeId.storeId;
     } else {
-      storage.doc(storeCreatedUid).set({
-        'storeId': storeCreatedUid,
-        'storeEmail': user!.email
-      }).whenComplete(() => fetchStoreIdFromStorage());
+      await storage
+          .doc(storeCreatedUid)
+          .set({'storeId': storeCreatedUid, 'storeEmail': user!.email});
+      await fetchStoreIdFromStorage();
     }
   }
 

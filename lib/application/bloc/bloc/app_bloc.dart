@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:entreggue_restaurant/application/presentation/views/couriers_screen/couriers_screen.dart';
 import 'package:entreggue_restaurant/data/models/adresses_model.dart';
 import 'package:entreggue_restaurant/data/models/store_couriers_model.dart';
+import 'package:entreggue_restaurant/data/models/store_id_model.dart';
 import 'package:entreggue_restaurant/data/repos/firebase_store.dart';
 import 'package:entreggue_restaurant/domain/auth/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,7 +27,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppEventGetData>((event, emit) async {
       emit(const AppStateLoggedIn(isLoading: true));
       displayList = [];
-      await FetchFromStorage().fetchStoreIdFromStorage();
+      while (storeIdModelString == null) {
+        await FetchFromStorage().fetchStoreIdFromStorage();
+      }
       final couriers = await FetchFromStorage().getAllCouriers();
       storeCouriers = couriers;
       displayList = storeCouriers.reversed.toList();
