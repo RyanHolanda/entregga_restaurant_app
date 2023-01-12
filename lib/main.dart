@@ -2,6 +2,7 @@ import 'package:entreggue_restaurant/application/bloc/bloc/app_bloc.dart';
 import 'package:entreggue_restaurant/application/presentation/views/couriers_screen/couriers_screen.dart';
 import 'package:entreggue_restaurant/application/presentation/widgets/dialogs/loading_dialog.dart';
 import 'package:entreggue_restaurant/domain/auth/auth.dart';
+import 'package:entreggue_restaurant/teste_screen.dart';
 import '../firebase_options.dart';
 import 'package:entreggue_restaurant/l10n/l10n.dart';
 import 'package:entreggue_restaurant/application/presentation/views/login_screen/login_screen.dart';
@@ -56,13 +57,16 @@ class MyApp extends StatelessWidget {
                   return BlocBuilder<AppBloc, AppState>(
                     builder: (context, state) {
                       if (state is AppStateLoggedIn) {
-                        return const CouriersScreen();
+                        if (state.isLoading == true) {
+                          return const BlankScreen();
+                        } else {
+                          return const CouriersScreen();
+                        }
                       }
                       if (state is AppStateLoggedOut) {
                         return const LoginScreen();
-                      } else {
-                        return SizedBox.shrink();
                       }
+                      return const SizedBox.shrink();
                     },
                   );
                 }),
