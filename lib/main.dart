@@ -1,6 +1,5 @@
 import 'package:entreggue_restaurant/application/bloc/bloc/app_bloc.dart';
 import 'package:entreggue_restaurant/application/presentation/views/couriers_screen/couriers_screen.dart';
-import 'package:entreggue_restaurant/application/presentation/views/send_order_screen/send_order_screen.dart';
 import 'package:entreggue_restaurant/application/presentation/widgets/dialogs/loading_dialog.dart';
 import 'package:entreggue_restaurant/domain/auth/auth.dart';
 import '../firebase_options.dart';
@@ -29,6 +28,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => AppBloc(),
       child: MaterialApp(
+          title: 'Entregga',
           localizationsDelegates: const [
             GlobalWidgetsLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -44,7 +44,6 @@ class MyApp extends StatelessWidget {
                 LoadingDialog(context: context).showLoadingDialog();
               } else if (state is AppStateLoggedIn &&
                   state.isLoading == false) {
-                print('is not loading anymore');
                 Navigator.pop(context);
               }
             },
@@ -70,7 +69,7 @@ class MyApp extends StatelessWidget {
 
   ThemeData lightTheme() {
     return ThemeData(
-        primaryColor: Colors.black,
+        primaryColor: const Color.fromARGB(255, 0, 0, 0),
         colorScheme: const ColorScheme.light(
             primary: Color.fromARGB(255, 5, 215, 12), secondary: Colors.white));
   }

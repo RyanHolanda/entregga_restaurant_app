@@ -39,7 +39,7 @@ class _InputFieldState extends State<InputField> {
                           invisiblePassword = !invisiblePassword;
                         });
                       },
-                      icon: Icon(Icons.remove_red_eye))
+                      icon: const Icon(Icons.remove_red_eye))
                   : null,
               hintText: widget.hintText,
               border: const UnderlineInputBorder(borderSide: BorderSide())),

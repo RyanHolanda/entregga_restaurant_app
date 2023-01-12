@@ -1,4 +1,3 @@
-import 'package:entreggue_restaurant/application/presentation/views/send_order_screen/send_order_screen.dart';
 import 'package:entreggue_restaurant/application/presentation/widgets/send_order_widgets/courier_info.dart';
 import 'package:entreggue_restaurant/application/presentation/widgets/send_order_widgets/past_orders.dart';
 import 'package:entreggue_restaurant/application/presentation/widgets/send_order_widgets/send_order.dart';
@@ -110,7 +109,7 @@ class SendOrderScreenWeb extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 width: 300,
                 height: MediaQuery.of(context).size.height / 1.5,
                 decoration: BoxDecoration(

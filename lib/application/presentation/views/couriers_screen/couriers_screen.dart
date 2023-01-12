@@ -41,7 +41,7 @@ class _CouriersScreenState extends State<CouriersScreen> {
       const Duration(seconds: 1),
       (timer) {
         if (storeCouriers.isNotEmpty) {
-          if (this.mounted) {
+          if (mounted) {
             setState(() {
               displayList = storeCouriers.reversed.toList();
             });
@@ -218,7 +218,6 @@ class _CouriersScreenState extends State<CouriersScreen> {
                 ),
               ),
             );
-            ;
           },
         );
       },

@@ -1,6 +1,4 @@
-import 'package:entreggue_restaurant/application/presentation/widgets/dialogs/loading_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyButton1 extends StatelessWidget {
   const MyButton1({

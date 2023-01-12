@@ -106,7 +106,7 @@ class WebLoginScreen extends StatelessWidget {
                           height: 50,
                         ),
                         state.isLoading
-                            ? CircularProgressIndicator()
+                            ? const CircularProgressIndicator()
                             : MyButton1(
                                 onPressed: () {
                                   context.read<AppBloc>().add(AppEventLogin(

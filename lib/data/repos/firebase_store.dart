@@ -3,7 +3,6 @@ import 'package:entreggue_restaurant/data/models/adresses_model.dart';
 import 'package:entreggue_restaurant/data/models/store_couriers_model.dart';
 import 'package:entreggue_restaurant/data/models/store_id_model.dart';
 import 'package:entreggue_restaurant/domain/auth/auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
@@ -23,10 +22,8 @@ class FetchFromStorage extends Storage {
     final docSnap = await ref.get();
     final storeId = docSnap.data();
     if (storeId != null) {
-      print('has data');
       storeIdModelString = storeId.storeId;
     } else {
-      print('dont has data');
       storage.doc(user!.email).set({'storeId': storeCreatedUid}).whenComplete(
           () => fetchStoreIdFromStorage());
     }

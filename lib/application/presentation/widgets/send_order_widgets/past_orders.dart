@@ -62,7 +62,7 @@ class PasOrdersFromCourier extends StatelessWidget {
                                       courierAddresses[index].address,
                                     ),
                                     courierAddresses[index].complement == ' '
-                                        ? SizedBox.shrink()
+                                        ? const SizedBox.shrink()
                                         : Text(
                                             courierAddresses[index].complement,
                                           ),

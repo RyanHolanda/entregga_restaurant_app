@@ -17,7 +17,7 @@ class SignOutDialog {
         children: [
           Container(
             padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(color: Colors.white),
+            decoration: const BoxDecoration(color: Colors.white),
             height: 300,
             width: 300,
             child: Center(
@@ -32,7 +32,7 @@ class SignOutDialog {
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     AppLocalizations.of(context)!.areYouSureDescription,
                     textAlign: TextAlign.center,
