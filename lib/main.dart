@@ -3,7 +3,7 @@ import 'package:entreggue_restaurant/application/presentation/views/couriers_scr
 import 'package:entreggue_restaurant/application/presentation/views/send_order_screen/send_order_screen.dart';
 import 'package:entreggue_restaurant/application/presentation/widgets/dialogs/loading_dialog.dart';
 import 'package:entreggue_restaurant/domain/auth/auth.dart';
-import 'package:entreggue_restaurant/firebase_options.dart';
+import '../firebase_options.dart';
 import 'package:entreggue_restaurant/l10n/l10n.dart';
 import 'package:entreggue_restaurant/application/presentation/views/login_screen/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
