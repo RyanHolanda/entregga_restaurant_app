@@ -59,7 +59,11 @@ class PasOrdersFromCourier extends StatelessWidget {
                                 trailing: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Text(courierAddresses[index].date),
+                                    Text(
+                                      courierAddresses[index].date,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                     Icon(
                                       courierAddresses[index].completed
                                           ? Icons.check
@@ -70,6 +74,8 @@ class PasOrdersFromCourier extends StatelessWidget {
                                 ),
                                 title: Text(
                                   courierAddresses[index].clientName,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -78,11 +84,15 @@ class PasOrdersFromCourier extends StatelessWidget {
                                   children: [
                                     Text(
                                       courierAddresses[index].address,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                     courierAddresses[index].complement == ' '
                                         ? const SizedBox.shrink()
                                         : Text(
                                             courierAddresses[index].complement,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                     Text(
                                       courierAddresses[index].observations,
