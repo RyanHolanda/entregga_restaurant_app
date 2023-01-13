@@ -84,6 +84,7 @@ class SendAddressWidget extends StatelessWidget {
                                 TextControllers.clientNameController.text,
                             courierId: courierId,
                             dataToAdd: {
+                              'completed': false,
                               'observations': TextControllers
                                       .observationsController.text.isEmpty
                                   ? ' '

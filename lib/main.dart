@@ -63,7 +63,8 @@ class MyApp extends StatelessWidget {
                           return const CouriersScreen();
                         }
                       }
-                      if (state is AppStateLoggedOut) {
+                      if (state is AppStateLoggedOut ||
+                          state is AppStateError) {
                         return const LoginScreen();
                       }
                       return const SizedBox.shrink();
