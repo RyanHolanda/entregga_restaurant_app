@@ -84,7 +84,7 @@ class PasOrdersFromCourier extends StatelessWidget {
                                   children: [
                                     Text(
                                       courierAddresses[index].address,
-                                      maxLines: 2,
+                                      maxLines: 3,
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     courierAddresses[index].complement == ' '
@@ -96,7 +96,7 @@ class PasOrdersFromCourier extends StatelessWidget {
                                           ),
                                     Text(
                                       courierAddresses[index].observations,
-                                      maxLines: 1,
+                                      maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ],

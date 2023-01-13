@@ -57,11 +57,7 @@ class MyApp extends StatelessWidget {
                   return BlocBuilder<AppBloc, AppState>(
                     builder: (context, state) {
                       if (state is AppStateLoggedIn) {
-                        if (state.isLoading == true) {
-                          return const BlankScreen();
-                        } else {
-                          return const CouriersScreen();
-                        }
+                        return const CouriersScreen();
                       }
                       if (state is AppStateLoggedOut ||
                           state is AppStateError) {

@@ -61,162 +61,179 @@ class _CouriersScreenState extends State<CouriersScreen> {
           builder: (BuildContext context, BoxConstraints constraints) {
             return GestureDetector(
               onTap: () => FocusScope.of(context).unfocus(),
-              child: Scaffold(
-                floatingActionButton: constraints.maxWidth > 700
-                    ? null
-                    : FloatingActionButton(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        onPressed: () => AddCourierDialog(context: context)
-                            .showAddCourierDialog(),
-                        child: const Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        ),
+              child: state.isLoading
+                  ? const Scaffold(
+                      body: Center(
+                        child: CircularProgressIndicator(),
                       ),
-                appBar: AppBar(
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  toolbarHeight: 0,
-                  elevation: 0,
-                ),
-                body: SingleChildScrollView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  child: Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20, right: 20, top: 20, bottom: 0),
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: state.isLoading
-                              ? const CircularProgressIndicator()
-                              : const SignOutButton(),
-                        ),
+                    )
+                  : Scaffold(
+                      floatingActionButton: constraints.maxWidth > 700
+                          ? null
+                          : FloatingActionButton(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
+                              onPressed: () =>
+                                  AddCourierDialog(context: context)
+                                      .showAddCourierDialog(),
+                              child: const Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                      appBar: AppBar(
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
+                        toolbarHeight: 0,
+                        elevation: 0,
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                      body: SingleChildScrollView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        child: Stack(
                           children: [
-                            constraints.maxWidth > 700
-                                ? Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        '${AppLocalizations.of(context)!.storeID} ${storeIdModelString ?? ''}',
-                                        style: const TextStyle(
-                                          fontSize: 21,
-                                          fontWeight: FontWeight.bold,
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 20, top: 20, bottom: 0),
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: state.isLoading
+                                    ? const CircularProgressIndicator()
+                                    : const SignOutButton(),
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  constraints.maxWidth > 700
+                                      ? Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '${AppLocalizations.of(context)!.storeID} ${storeIdModelString ?? ''}',
+                                              style: const TextStyle(
+                                                fontSize: 21,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            IconButton(
+                                              onPressed: () {
+                                                Clipboard.setData(ClipboardData(
+                                                    text: storeIdModelString));
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                        content: Text(
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .copiedToClipBoard)));
+                                              },
+                                              icon: const Icon(Icons.copy),
+                                              splashRadius: 20,
+                                            )
+                                          ],
+                                        )
+                                      : const SizedBox.shrink(),
+                                  constraints.maxWidth > 700
+                                      ? const SizedBox(
+                                          height: 50,
+                                        )
+                                      : const SizedBox.shrink(),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Theme.of(context)
+                                            .scaffoldBackgroundColor,
+                                        boxShadow: [
+                                          BoxShadow(
+                                              blurRadius: 15,
+                                              color: Theme.of(context)
+                                                  .primaryColor
+                                                  .withOpacity(0.05))
+                                        ],
+                                        borderRadius: BorderRadius.circular(
+                                            constraints.maxWidth > 700
+                                                ? 30
+                                                : 0)),
+                                    width: constraints.maxWidth > 700
+                                        ? 500
+                                        : MediaQuery.of(context).size.width,
+                                    height: constraints.maxWidth > 700
+                                        ? MediaQuery.of(context).size.height /
+                                            1.5
+                                        : MediaQuery.of(context).size.height,
+                                    child: SafeArea(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(20),
+                                        child: Column(
+                                          children: [
+                                            constraints.maxWidth < 700
+                                                ? Align(
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                            '${AppLocalizations.of(context)!.storeID} ${storeIdModelString ?? ''}'),
+                                                        IconButton(
+                                                            onPressed: () {
+                                                              Clipboard.setData(
+                                                                  ClipboardData(
+                                                                      text:
+                                                                          storeIdModelString));
+                                                              ScaffoldMessenger
+                                                                      .of(
+                                                                          context)
+                                                                  .showSnackBar(
+                                                                      SnackBar(
+                                                                          content:
+                                                                              Text(AppLocalizations.of(context)!.copiedToClipBoard)));
+                                                            },
+                                                            icon: const Icon(
+                                                              Icons.copy,
+                                                              size: 18,
+                                                            ))
+                                                      ],
+                                                    ),
+                                                  )
+                                                : const SizedBox.shrink(),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                      .yourCouriers,
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 16),
+                                                ),
+                                                constraints.maxWidth > 700
+                                                    ? const AddCourierTextButton()
+                                                    : const PopUpMenuMobile()
+                                              ],
+                                            ),
+                                            searchCourierTextField(context),
+                                            Expanded(
+                                              child: CouriersList(
+                                                  constraints: constraints,
+                                                  scrollController:
+                                                      scrollController),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      IconButton(
-                                        onPressed: () {
-                                          Clipboard.setData(ClipboardData(
-                                              text: storeIdModelString));
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                                  content: Text(
-                                                      AppLocalizations.of(
-                                                              context)!
-                                                          .copiedToClipBoard)));
-                                        },
-                                        icon: const Icon(Icons.copy),
-                                        splashRadius: 20,
-                                      )
-                                    ],
-                                  )
-                                : const SizedBox.shrink(),
-                            constraints.maxWidth > 700
-                                ? const SizedBox(
-                                    height: 50,
-                                  )
-                                : const SizedBox.shrink(),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        blurRadius: 15,
-                                        color: Theme.of(context)
-                                            .primaryColor
-                                            .withOpacity(0.05))
-                                  ],
-                                  borderRadius: BorderRadius.circular(
-                                      constraints.maxWidth > 700 ? 30 : 0)),
-                              width: constraints.maxWidth > 700
-                                  ? 500
-                                  : MediaQuery.of(context).size.width,
-                              height: constraints.maxWidth > 700
-                                  ? MediaQuery.of(context).size.height / 1.5
-                                  : MediaQuery.of(context).size.height,
-                              child: SafeArea(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20),
-                                  child: Column(
-                                    children: [
-                                      constraints.maxWidth < 700
-                                          ? Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                      '${AppLocalizations.of(context)!.storeID} ${storeIdModelString ?? ''}'),
-                                                  IconButton(
-                                                      onPressed: () {
-                                                        Clipboard.setData(
-                                                            ClipboardData(
-                                                                text:
-                                                                    storeIdModelString));
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(SnackBar(
-                                                                content: Text(
-                                                                    AppLocalizations.of(
-                                                                            context)!
-                                                                        .copiedToClipBoard)));
-                                                      },
-                                                      icon: const Icon(
-                                                        Icons.copy,
-                                                        size: 18,
-                                                      ))
-                                                ],
-                                              ),
-                                            )
-                                          : const SizedBox.shrink(),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .yourCouriers,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16),
-                                          ),
-                                          constraints.maxWidth > 700
-                                              ? const AddCourierTextButton()
-                                              : const PopUpMenuMobile()
-                                        ],
-                                      ),
-                                      searchCourierTextField(context),
-                                      Expanded(
-                                        child: CouriersList(
-                                            constraints: constraints,
-                                            scrollController: scrollController),
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
+                    ),
             );
           },
         );
