@@ -25,6 +25,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       }
     });
     on<AppEventGetData>((event, emit) async {
+      storeIdModelString = null;
       emit(const AppStateLoggedIn(isLoading: true));
       displayList = [];
       while (storeIdModelString == null) {

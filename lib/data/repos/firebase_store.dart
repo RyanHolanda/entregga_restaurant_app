@@ -15,7 +15,7 @@ abstract class Storage {
 }
 
 class FetchFromStorage extends Storage {
-  fetchStoreIdFromStorage() async {
+  Future fetchStoreIdFromStorage() async {
     final ref = storage.doc(storeCreatedUid).withConverter(
         fromFirestore: StoreIdModel.fromFirestore,
         toFirestore: (StoreIdModel storeId, _) => StoreIdModel().toFirestore());

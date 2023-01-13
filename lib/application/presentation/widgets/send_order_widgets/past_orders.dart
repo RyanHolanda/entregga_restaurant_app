@@ -32,6 +32,7 @@ class PasOrdersFromCourier extends StatelessWidget {
                     controller: scrollController,
                     itemCount: courierAddresses.length,
                     itemBuilder: (BuildContext context, int index) {
+                      courierAddresses.sort((a, b) => b.date.compareTo(a.date));
                       return SelectionArea(
                         child: Padding(
                           padding: const EdgeInsets.all(8),
