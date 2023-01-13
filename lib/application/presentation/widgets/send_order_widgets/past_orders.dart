@@ -37,19 +37,37 @@ class PasOrdersFromCourier extends StatelessWidget {
                           padding: const EdgeInsets.all(8),
                           child: Container(
                             decoration: BoxDecoration(
-                                color:
-                                    Theme.of(context).scaffoldBackgroundColor,
+                                color: courierAddresses[index].completed
+                                    ? Theme.of(context)
+                                        .colorScheme
+                                        .primary
+                                        .withOpacity(0.1)
+                                    : Theme.of(context).scaffoldBackgroundColor,
                                 boxShadow: [
                                   BoxShadow(
                                       spreadRadius: 1,
                                       blurRadius: 7,
-                                      color: Theme.of(context)
-                                          .primaryColor
-                                          .withOpacity(0.05))
+                                      color: courierAddresses[index].completed
+                                          ? Colors.transparent
+                                          : Theme.of(context)
+                                              .primaryColor
+                                              .withOpacity(0.05))
                                 ],
                                 borderRadius: BorderRadius.circular(15)),
                             padding: const EdgeInsets.all(15),
                             child: ListTile(
+                                trailing: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(courierAddresses[index].date),
+                                    Icon(
+                                      courierAddresses[index].completed
+                                          ? Icons.check
+                                          : null,
+                                      color: Colors.green,
+                                    )
+                                  ],
+                                ),
                                 title: Text(
                                   courierAddresses[index].clientName,
                                   style: const TextStyle(

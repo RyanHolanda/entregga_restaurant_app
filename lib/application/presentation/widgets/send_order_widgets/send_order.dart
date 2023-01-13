@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:entreggue_restaurant/application/bloc/bloc/app_bloc.dart';
 import 'package:entreggue_restaurant/application/presentation/widgets/dialogs/add_address_error.dart';
 import 'package:entreggue_restaurant/domain/text_controllers/text_controllers.dart';
@@ -84,6 +85,8 @@ class SendAddressWidget extends StatelessWidget {
                                 TextControllers.clientNameController.text,
                             courierId: courierId,
                             dataToAdd: {
+                              'date':
+                                  '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute}',
                               'completed': false,
                               'observations': TextControllers
                                       .observationsController.text.isEmpty

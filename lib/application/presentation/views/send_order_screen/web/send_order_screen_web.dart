@@ -25,6 +25,7 @@ class SendOrderScreenWeb extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
+              flex: 1,
               child: Container(
                 height: MediaQuery.of(context).size.height / 1.5,
                 decoration: BoxDecoration(
@@ -107,7 +108,7 @@ class SendOrderScreenWeb extends StatelessWidget {
               width: 20,
             ),
             Expanded(
-              flex: 2,
+              flex: 1,
               child: Container(
                 padding: const EdgeInsets.all(20),
                 width: 300,

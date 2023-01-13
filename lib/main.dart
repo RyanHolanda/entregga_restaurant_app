@@ -79,6 +79,6 @@ class MyApp extends StatelessWidget {
     return ThemeData(
         primaryColor: const Color.fromARGB(255, 0, 0, 0),
         colorScheme: const ColorScheme.light(
-            primary: Color.fromARGB(255, 5, 215, 12), secondary: Colors.white));
+            primary: Colors.green, secondary: Colors.white));
   }
 }
