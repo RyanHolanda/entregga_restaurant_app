@@ -1,9 +1,5 @@
+![Group 13](https://user-images.githubusercontent.com/86686024/212442350-63360cbd-0bd6-4975-a92e-2ed85e813340.png)
+![Group 12](https://user-images.githubusercontent.com/86686024/212442353-71db9397-8982-4083-ab91-26907b95d840.png)
+![Group 11](https://user-images.githubusercontent.com/86686024/212442357-f539fb6a-b44d-4fd2-b2ec-8a53ad4d32a9.png)
 
-<table>
-  <tr>
-    <td><img src="https://user-images.githubusercontent.com/86686024/212432010-43be5df5-4616-43e0-9a92-8eac6e9fda2c.png"></td>
-    <td><img src="https://user-images.githubusercontent.com/86686024/212432013-14302b9e-7e24-48c1-b87c-42ae87b9d36c.png"></td>
-    <td><img src="https://user-images.githubusercontent.com/86686024/212432014-3af4d42f-ac2b-47f1-8784-4edbeb446944.png"></td>
-  </tr>
- </table>
-
+# Why I decided to develop this app/site
