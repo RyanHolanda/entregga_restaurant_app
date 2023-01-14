@@ -14,7 +14,7 @@ class SendOrderScreen extends StatelessWidget {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Scaffold(
-            body: constraints.maxWidth > 700
+            body: constraints.maxWidth > 900
                 ? SendOrderScreenWeb(
                     constraints: constraints,
                     courierId: courierId,

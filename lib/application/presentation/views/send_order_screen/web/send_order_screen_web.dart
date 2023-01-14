@@ -19,46 +19,32 @@ class SendOrderScreenWeb extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              flex: 1,
-              child: Container(
-                height: MediaQuery.of(context).size.height / 1.5,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 15,
-                          color:
-                              Theme.of(context).primaryColor.withOpacity(0.05))
-                    ],
-                    borderRadius: BorderRadius.circular(
-                        constraints.maxWidth > 700 ? 30 : 0)),
-                child: CourierInfo(courierId: courierId),
-              ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            flex: 1,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: CourierInfo(courierId: courierId),
             ),
-            const SizedBox(
-              width: 20,
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 5,
+                        spreadRadius: 1,
+                        color: Theme.of(context).primaryColor.withOpacity(0.05))
+                  ]),
+              height: MediaQuery.of(context).size.height,
+              child: Padding(
                 padding: const EdgeInsets.all(20),
-                height: MediaQuery.of(context).size.height / 1.5,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 15,
-                          color:
-                              Theme.of(context).primaryColor.withOpacity(0.05))
-                    ],
-                    borderRadius: BorderRadius.circular(
-                        constraints.maxWidth > 700 ? 30 : 0)),
                 child: SingleChildScrollView(
                   child: Center(
                     child: Column(
@@ -104,30 +90,18 @@ class SendOrderScreenWeb extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              width: 20,
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
+          ),
+          Expanded(
+            flex: 1,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Padding(
                 padding: const EdgeInsets.all(20),
-                width: 300,
-                height: MediaQuery.of(context).size.height / 1.5,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 15,
-                          color:
-                              Theme.of(context).primaryColor.withOpacity(0.05))
-                    ],
-                    borderRadius: BorderRadius.circular(
-                        constraints.maxWidth > 700 ? 30 : 0)),
                 child: PasOrdersFromCourier(),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -17,7 +17,7 @@ class CourierInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(top: 30),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +52,7 @@ class CourierInfo extends StatelessWidget {
                 size: 200.0,
               ),
               const SizedBox(
-                height: 100,
+                height: 30,
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
@@ -69,7 +69,7 @@ class CourierInfo extends StatelessWidget {
                         style: const TextStyle(color: Colors.black),
                       ),
                     )),
-              )
+              ),
             ],
           ),
         ),
